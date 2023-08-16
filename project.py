@@ -24,7 +24,7 @@ def main():
             print("Goodbye.")
             break
         elif option.lower() == "delete":
-            delete()
+            delete(conn)
 
         date, hours = fetch_data()
 
@@ -74,9 +74,17 @@ def graph_data(conn):
 def menu():
     return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'delete' to reset your data\nType 'exit' to exit"
 
-def delete():
-    print("Delete data test")
-    return
+def delete(conn):
+    cur = conn.cursor()
+    yes_or_no = ("y", "n")
+    option = (input("Are you sure you want to reset? 'y' or 'n': "))
+    if option.lower() == 'y':
+        cur.execute('''DELETE FROM screentime''')
+        print("Data cleared")
+        return
+    elif option.lower() == 'n':
+        return
+    # TODO: Add else statement and continue (while loop?)
 
 if __name__ == "__main__":
     main()
