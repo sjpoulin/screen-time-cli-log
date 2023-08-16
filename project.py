@@ -12,7 +12,7 @@ def main():
     cur.execute('''CREATE TABLE IF NOT EXISTS screentime(date TEXT, hours INTEGER)''')
     conn.commit()
 
-    options = ['log', 'graph', 'exit']
+    options = ['log', 'graph', 'exit', 'delete']
 
     while True:
         print(menu())
@@ -23,6 +23,8 @@ def main():
         elif option.lower() == "exit":
             print("Goodbye.")
             break
+        elif option.lower() == "delete":
+            delete()
 
         date, hours = fetch_data()
 
@@ -70,8 +72,11 @@ def graph_data(conn):
     plt.show()
 
 def menu():
-    return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'exit' to exit"
+    return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'delete' to reset your data\nType 'exit' to exit"
 
+def delete():
+    print("Delete data test")
+    return
 
 if __name__ == "__main__":
     main()
