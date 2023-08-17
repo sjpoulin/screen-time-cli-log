@@ -18,4 +18,4 @@ https://stackoverflow.com/questions/45211714/cannot-operate-on-a-closed-cursor-i
 TODO:
 Abstract away logging and graphing into menu options
 Figure out formatting for dates in x-axis
-Make a delete option for the user that clears database
+Update delete option so it only accepts y or n, then goes back to menu
