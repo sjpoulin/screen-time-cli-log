@@ -12,26 +12,24 @@ def main():
     cur.execute('''CREATE TABLE IF NOT EXISTS screentime(date TEXT, hours INTEGER)''')
     conn.commit()
 
-    options = ['log', 'graph', 'exit', 'delete']
-
     while True:
         print(menu())
         option = input("What would you like to do? ")
-        if option.lower() not in options:
-            print("Please select from one of the listed options.\n")
-            continue
-        elif option.lower() == "log":
+        if option.lower() == "log":
             fetch_data(conn)
         elif option.lower() == "graph":
             graph_data(conn)
             continue
+        elif option.lower() == "delete":
+            delete(conn)
         elif option.lower() == "exit":
             print("Goodbye.")
             cur.close()
             conn.close()
             break
-        elif option.lower() == "delete":
-            delete(conn)
+        else:
+            print("Please select from one of the listed options.\n")
+            continue
 
 def fetch_data(conn):
     cur = conn.cursor()
