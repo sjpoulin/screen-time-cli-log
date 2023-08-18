@@ -20,6 +20,8 @@ def main():
         if option.lower() not in options:
             print("Please select from one of the listed options.\n")
             continue
+        elif option.lower() == "log":
+            fetch_data(conn)
         elif option.lower() == "exit":
             print("Goodbye.")
             cur.close()
@@ -28,16 +30,10 @@ def main():
         elif option.lower() == "delete":
             delete(conn)
 
-        date, hours = fetch_data()
-
-        cur.execute('''INSERT INTO screentime (date, hours) VALUES (?, ?)''', (date, hours))
-        conn.commit()
-        print("Logged")
-
         # graph_data(conn)
 
-def fetch_data():
-    # TODO: regex for dates
+def fetch_data(conn):
+    cur = conn.cursor()
     date = input("Date: ")
     while True:
         try:
@@ -46,7 +42,10 @@ def fetch_data():
         except ValueError:
             print("Input must be a number.")
             continue
-    return date, hours
+    cur.execute('''INSERT INTO screentime (date, hours) VALUES (?, ?)''', (date, hours))
+    conn.commit()
+    print("Logged\n")
+    return
 
 def graph_data(conn):
     cur = conn.cursor()
