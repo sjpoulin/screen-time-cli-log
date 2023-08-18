@@ -23,7 +23,7 @@ def main():
         elif option.lower() == "delete":
             delete(conn)
         elif option.lower() == "exit":
-            print("Goodbye.")
+            print("Goodbye.\n")
             cur.close()
             conn.close()
             break
