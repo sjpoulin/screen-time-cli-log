@@ -34,7 +34,7 @@ def main():
         conn.commit()
         print("Logged")
 
-        graph_data(conn)
+        # graph_data(conn)
 
 def fetch_data():
     # TODO: regex for dates
