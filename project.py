@@ -75,15 +75,17 @@ def menu():
 
 def delete(conn):
     cur = conn.cursor()
-    yes_or_no = ("y", "n")
-    option = (input("Are you sure you want to reset? 'y' or 'n': "))
-    if option.lower() == 'y':
-        cur.execute('''DELETE FROM screentime''')
-        print("Data cleared")
-        return
-    elif option.lower() == 'n':
-        return
-    # TODO: Add else statement and continue (while loop?)
+    while True:
+        option = (input("Are you sure you want to reset? 'y' or 'n': "))
+        if option.lower() == 'y':
+            cur.execute('''DELETE FROM screentime''')
+            print("Data cleared")
+            break
+        elif option.lower() == 'n':
+            break
+        else:
+            print("Please select 'y' or 'n'")
+            continue
 
 if __name__ == "__main__":
     main()
