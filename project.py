@@ -22,6 +22,8 @@ def main():
             continue
         elif option.lower() == "exit":
             print("Goodbye.")
+            cur.close()
+            conn.close()
             break
         elif option.lower() == "delete":
             delete(conn)
@@ -33,9 +35,6 @@ def main():
         print("Logged")
 
         graph_data(conn)
-
-        cur.close()
-        conn.close()
 
 def fetch_data():
     # TODO: regex for dates
