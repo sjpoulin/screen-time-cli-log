@@ -22,6 +22,9 @@ def main():
             continue
         elif option.lower() == "log":
             fetch_data(conn)
+        elif option.lower() == "graph":
+            graph_data(conn)
+            continue
         elif option.lower() == "exit":
             print("Goodbye.")
             cur.close()
@@ -29,8 +32,6 @@ def main():
             break
         elif option.lower() == "delete":
             delete(conn)
-
-        # graph_data(conn)
 
 def fetch_data(conn):
     cur = conn.cursor()
@@ -78,7 +79,7 @@ def delete(conn):
         option = (input("Are you sure you want to reset? 'y' or 'n': "))
         if option.lower() == 'y':
             cur.execute('''DELETE FROM screentime''')
-            print("Data cleared")
+            print("Data cleared\n")
             break
         elif option.lower() == 'n':
             break
