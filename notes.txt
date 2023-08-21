@@ -18,5 +18,4 @@ https://stackoverflow.com/questions/45211714/cannot-operate-on-a-closed-cursor-i
 TODO:
 Abstract date and hours logging
 Figure out formatting for dates in x-axis
-Figure out DB sorting so dates and hours are sorted
 
