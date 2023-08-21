@@ -48,7 +48,7 @@ def fetch_data(conn):
 
 def graph_data(conn):
     cur = conn.cursor()
-    cur.execute('''SELECT date, hours FROM screentime''')
+    cur.execute('''SELECT * FROM screentime ORDER BY date ASC''')
     data = cur.fetchall()
 
     dates = []
@@ -57,8 +57,6 @@ def graph_data(conn):
     for row in data:
         dates.append(row[0])
         hours.append(row[1])
-
-    dates = sorted(dates)
 
     plt.plot(dates, hours)
 
