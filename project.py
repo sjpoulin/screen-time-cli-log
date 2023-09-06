@@ -15,22 +15,22 @@ def main():
     while True:
         print(menu())
         option = input("What would you like to do? ")
-        if option.lower() == "log":
+        if option.lower().strip() == "log":
             fetch_data(conn)
-        elif option.lower() == "graph":
+        elif option.lower().strip() == "graph":
             graph_data(conn)
             continue
-        elif option.lower() == "delete":
+        elif option.lower().strip() == "delete":
             delete(conn)
-        elif option.lower() == "credits":
+        elif option.lower().strip() == "credits":
             print(credits())
-        elif option.lower() == "exit":
+        elif option.lower().strip() == "exit":
             print("Goodbye.\n")
             cur.close()
             conn.close()
             break
         else:
-            print("Please select from one of the listed options.\n")
+            print("\nPlease select from one of the listed options.\n")
             continue
 
 def fetch_data(conn):
@@ -45,7 +45,7 @@ def fetch_data(conn):
             continue
     cur.execute('''INSERT INTO screentime (date, hours) VALUES (?, ?)''', (date, hours))
     conn.commit()
-    print("Logged\n")
+    print("\nLogged")
     return
 
 def graph_data(conn):
@@ -77,15 +77,15 @@ def credits():
 def delete(conn):
     cur = conn.cursor()
     while True:
-        option = (input("Are you sure you want to reset? 'y' or 'n': "))
-        if option.lower() == 'y':
+        option = (input("\nAre you sure you want to reset? 'y' or 'n': "))
+        if option.lower().strip() == 'y':
             cur.execute('''DELETE FROM screentime''')
             print("Data cleared\n")
             break
-        elif option.lower() == 'n':
+        elif option.lower().strip() == 'n':
             break
         else:
-            print("Please select 'y' or 'n'")
+            print("\nPlease select 'y' or 'n'")
             continue
 
 if __name__ == "__main__":
