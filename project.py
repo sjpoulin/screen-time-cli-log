@@ -22,6 +22,8 @@ def main():
             continue
         elif option.lower() == "delete":
             delete(conn)
+        elif option.lower() == "credits":
+            print(credits())
         elif option.lower() == "exit":
             print("Goodbye.\n")
             cur.close()
@@ -67,7 +69,10 @@ def graph_data(conn):
     plt.show()
 
 def menu():
-    return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'delete' to reset your data\nType 'exit' to exit"
+    return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'delete' to reset your data\nType 'credits' to view credits\nType 'exit' to exit"
+
+def credits():
+    return "\nScreen Time CLI Log\nCopyright 2023 Spencer Poulin\nwww.github.com/sjpoulin\n"
 
 def delete(conn):
     cur = conn.cursor()
