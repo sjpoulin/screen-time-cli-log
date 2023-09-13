@@ -9,7 +9,7 @@ def main():
     conn = sqlite3.connect("screentime.db")
     cur = conn.cursor()
 
-    cur.execute('''CREATE TABLE IF NOT EXISTS screentime(date TEXT, hours INTEGER)''')
+    cur.execute('''CREATE TABLE IF NOT EXISTS screentime(name TEXT, date TEXT, hours INTEGER)''')
     conn.commit()
 
     print(loaded(conn))
@@ -43,6 +43,7 @@ def loaded(conn):
 
 def fetch_data(conn):
     cur = conn.cursor()
+    name = input("Name: ")
     while True:
         date = input("Date: ")
         if re.search(r"^\d\d/\d\d$", date):
@@ -57,9 +58,9 @@ def fetch_data(conn):
         except ValueError:
             print("Input must be a number.")
             continue
-    cur.execute('''INSERT INTO screentime (date, hours) VALUES (?, ?)''', (date, hours))
+    cur.execute('''INSERT INTO screentime (name, date, hours) VALUES (?, ?, ?)''', (name.lower().strip(), date, hours))
     conn.commit()
-    print("\nLogged")
+    print("\nLogged\n")
     return
 
 def graph_data(conn):

@@ -16,7 +16,6 @@ https://stackoverflow.com/questions/45211714/cannot-operate-on-a-closed-cursor-i
 
 
 TODO:
-Add MM/DD regex for dates
 Add names to DB and graph options
 Figure out formatting for dates in x-axis
 
