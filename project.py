@@ -65,12 +65,26 @@ def fetch_data(conn):
 
 def graph_data(conn):
     cur = conn.cursor()
-    cur.execute('''SELECT * FROM screentime ORDER BY date ASC''')
+    cur.execute('''SELECT DISTINCT name FROM screentime''')
     data = cur.fetchall()
 
+    names = []
+    for row in data:
+        names.append(row[0])
+    
+    while True:
+        name = input("\nWhose data would you like to see? ")
+        if name not in names:
+            print("\nUser not found")
+            continue
+        else:
+            break
+    
+    cur.execute('''SELECT * FROM screentime ORDER BY date ASC''')
+    data = cur.fetchall()
+    
     dates = []
     hours = []
-
     for row in data:
         dates.append(row[0])
         hours.append(row[1])
@@ -79,7 +93,7 @@ def graph_data(conn):
 
     plt.xlabel("Date")
     plt.ylabel("Hours of Screen Time")
-    plt.title("My Screen Time")
+    plt.title(f"{name}'s Screen Time")
 
     plt.show()
 
