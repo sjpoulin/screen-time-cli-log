@@ -12,6 +12,8 @@ def main():
     cur.execute('''CREATE TABLE IF NOT EXISTS screentime(date TEXT, hours INTEGER)''')
     conn.commit()
 
+    print(loaded(conn))
+
     while True:
         print(menu())
         option = input("What would you like to do? ")
@@ -32,6 +34,12 @@ def main():
         else:
             print("\nPlease select from one of the listed options.\n")
             continue
+
+def loaded(conn):
+    if conn:
+        return "\nFile Loaded\n"
+    else:
+        return "\nFile not loaded\n"
 
 def fetch_data(conn):
     cur = conn.cursor()
