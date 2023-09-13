@@ -43,7 +43,13 @@ def loaded(conn):
 
 def fetch_data(conn):
     cur = conn.cursor()
-    date = input("Date: ")
+    while True:
+        date = input("Date: ")
+        if re.search(r"^\d\d/\d\d$", date):
+            break
+        else:
+            print("\nUser input: MM/DD\n")
+            continue
     while True:
         try:
             hours = int(input("Hours: "))
