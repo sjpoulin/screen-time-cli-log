@@ -25,7 +25,7 @@ def main():
         elif option.lower().strip() == "credits":
             print(credits())
         elif option.lower().strip() == "exit":
-            print("Goodbye.\n")
+            print("\nGoodbye.\n")
             cur.close()
             conn.close()
             break
