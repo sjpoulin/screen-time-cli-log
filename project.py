@@ -74,26 +74,26 @@ def graph_data(conn):
     
     while True:
         name = input("\nWhose data would you like to see? ")
-        if name not in names:
+        if name.lower() not in names:
             print("\nUser not found")
             continue
         else:
             break
     
-    cur.execute('''SELECT * FROM screentime ORDER BY date ASC''')
+    cur.execute('''SELECT * FROM screentime WHERE name = ? ORDER BY date ASC''', (name.lower(),))
     data = cur.fetchall()
     
     dates = []
     hours = []
     for row in data:
-        dates.append(row[0])
-        hours.append(row[1])
+        dates.append(row[1])
+        hours.append(row[2])
 
     plt.plot(dates, hours)
 
     plt.xlabel("Date")
     plt.ylabel("Hours of Screen Time")
-    plt.title(f"{name}'s Screen Time")
+    plt.title(f"{name.capitalize().strip()}'s Screen Time")
 
     plt.show()
 
