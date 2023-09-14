@@ -1,7 +1,6 @@
 import re
 import sqlite3
 import matplotlib.pyplot as plt
-from matplotlib import style
 
 # Final project https://cs50.harvard.edu/python/2022/project/
 
@@ -73,6 +72,9 @@ def graph_data(conn):
         names.append(row[0])
     
     while True:
+        print("\nNames on file:")
+        for name in names:
+            print(name)
         name = input("\nWhose data would you like to see? ")
         if name.lower() not in names:
             print("\nUser not found")
