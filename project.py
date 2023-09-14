@@ -2,9 +2,8 @@ import re
 import sqlite3
 import matplotlib.pyplot as plt
 
-# Final project https://cs50.harvard.edu/python/2022/project/
-
 def main():
+    # Loads DB, creates table if necessary, loads menu in command line
     conn = sqlite3.connect("screentime.db")
     cur = conn.cursor()
 
@@ -34,13 +33,16 @@ def main():
             print("\nPlease select from one of the listed options.\n")
             continue
 
+
 def loaded(conn):
+    # CLI confirmation that DB is properly loaded
     if conn:
         return "\nFile Loaded\n"
     else:
         return "\nFile not loaded\n"
 
 def fetch_data(conn):
+    # Data logging function with error handling for variables
     cur = conn.cursor()
     name = input("Name: ")
     while True:
@@ -70,6 +72,7 @@ def fetch_data(conn):
     return
 
 def graph_data(conn):
+    # Gives user a Matplotlib graph of their choice based on selected profile
     cur = conn.cursor()
     cur.execute('''SELECT DISTINCT name FROM screentime''')
     data = cur.fetchall()
@@ -110,12 +113,15 @@ def graph_data(conn):
     plt.show()
 
 def menu():
+    # Text function for menu 
     return "Welcome to Screentime!\n\nType 'log' to log an entry\nType 'graph' to view a graph of your screen time\nType 'delete' to reset your data\nType 'credits' to view credits\nType 'exit' to exit"
 
 def credits():
+    # Text function for credits
     return "\nScreen Time CLI Log\nCopyright 2023 Spencer Poulin\nwww.github.com/sjpoulin\n"
 
 def delete(conn):
+    # Gives user the option to delete all data from DB
     cur = conn.cursor()
     while True:
         option = (input("\nAre you sure you want to reset? 'y' or 'n': "))
