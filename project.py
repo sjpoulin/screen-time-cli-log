@@ -52,8 +52,15 @@ def fetch_data(conn):
             continue
     while True:
         try:
-            hours = int(input("Hours: "))
-            break
+            hours = float(input("Hours: "))
+            if hours < 0:
+                print("Cannot have negative hours of screen time.")
+                continue
+            elif hours > 24:
+                print("Cannot have more screen time than hours in a day.")
+                continue
+            else:
+                break
         except ValueError:
             print("Input must be a number.")
             continue
@@ -70,11 +77,14 @@ def graph_data(conn):
     names = []
     for row in data:
         names.append(row[0])
-    
+    if len(names) == 0:
+        print("\nNo information on file.\n")
+        return
+
     while True:
         print("\nNames on file:")
         for name in names:
-            print(name)
+            print(name.capitalize())
         name = input("\nWhose data would you like to see? ")
         if name.lower() not in names:
             print("\nUser not found")
@@ -111,6 +121,7 @@ def delete(conn):
         option = (input("\nAre you sure you want to reset? 'y' or 'n': "))
         if option.lower().strip() == 'y':
             cur.execute('''DELETE FROM screentime''')
+            conn.commit()
             print("Data cleared\n")
             break
         elif option.lower().strip() == 'n':
