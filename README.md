@@ -1,7 +1,7 @@
 # Screen Time CLI Log
 ### Video Demo:  
 
-<URL HERE>
+<https://youtu.be/hS60YGiS-FM>
 
 ### Description:
 
