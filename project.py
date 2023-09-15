@@ -104,8 +104,9 @@ def graph_data(conn):
         dates.append(row[1])
         hours.append(row[2])
 
-    plt.plot(dates, hours)
-
+    fig, ax = plt.subplots()
+    fig.canvas.manager.set_window_title(f"{name.capitalize().strip()}'s Screen Time")
+    ax.plot(dates, hours)
     plt.xlabel("Date")
     plt.ylabel("Hours of Screen Time")
     plt.title(f"{name.capitalize().strip()}'s Screen Time")
